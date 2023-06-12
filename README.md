@@ -31,4 +31,4 @@ But,
 ![solution 2](https://github.com/cepdnaclk/e18-6sp-Price-Prediction-in-Stock-Market/assets/73388062/b1a3d333-73fe-4f6a-8b7f-de9241e33146)
 
 
-https://projects.ce.pdn.ac.lk/docs/how-to-add-a-project
+## [You can access Google Colab Notebook for Funcitional API Model from here](https://colab.research.google.com/drive/1VZ6mbGhK3SVxX7wlbQqso2CibQzODYWP?authuser=1#scrollTo=w-RMcOB_K9HR)
