@@ -17,7 +17,7 @@ def model_func(data , name):
     tf.keras.layers.Dense(64, name='dense_2_num', activation=tf.nn.relu),
     tf.keras.layers.Dense(16, name='dense_3_num', activation=tf.nn.relu),
     tf.keras.layers.Dense(8, name='dense_4_num', activation=tf.nn.relu),
-    tf.keras.layers.Dense(1, name='output'),
+    tf.keras.layers.Dense(4, name='output'),
   ])
 
   # Chosing optimizer and loss function
