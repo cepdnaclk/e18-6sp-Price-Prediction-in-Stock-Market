@@ -19,11 +19,16 @@
     "supervisors": [
         {
             "name": "Dr. Maged Abidou",
+            "email": "maged.abidou@eng.asu.edu.eg"
         },
         {
             "name": "Dr. Damayanthi Herath",
             "email": "damayanthiherath@eng.pdn.ac.lk"
         }
     ],
-    "tags": ["Machine Learning", "Stock Market", "Web Application"]
+    "tags": [
+        "Machine Learning",
+        "Stock Market",
+        "Web Application"
+    ]
 }
