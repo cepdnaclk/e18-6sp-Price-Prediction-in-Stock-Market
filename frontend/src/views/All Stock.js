@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Table, Row, Col, Container } from "react-bootstrap";
 import { Form, Button, Dropdown } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const StockPricesPage = () => {
   const navigate = useNavigate();
@@ -20,29 +21,58 @@ const StockPricesPage = () => {
   const [highPrice, setHighPrice] = useState("");
   const [lowPrice, setLowPrice] = useState("");
   const [closePrice, setClosePrice] = useState("");
+  const [isPredictButtonDisabled, setIsPredictButtonDisabled] = useState(true);
 
   const handleOpenPriceChange = (e) => {
     setOpenPrice(e.target.value);
+    checkInputValues();
   };
-  const handleStockChange = (selectedOption) => {
-    setSelectedStock(selectedOption);
+
+  const handleHighPriceChange = (e) => {
+    setHighPrice(e.target.value);
+    checkInputValues();
+  };
+
+  const handleLowPriceChange = (e) => {
+    setLowPrice(e.target.value);
+    checkInputValues();
+  };
+
+  const handleClosePriceChange = (e) => {
+    setClosePrice(e.target.value);
+    checkInputValues();
+  };
+
+  const checkInputValues = () => {
+    // Enable the "Predict" button only if all four input fields have values
+    if (openPrice && highPrice && lowPrice && closePrice) {
+      setIsPredictButtonDisabled(false);
+    } else {
+      setIsPredictButtonDisabled(true);
+    }
   };
 
   const handlePredict = () => {
-    // Perform prediction logic here
-    // Replace this with your own prediction implementation
-    // Example: multiplying the open price by a fixed factor
-    const prediction = parseFloat(openPrice) * 1.2; // Just a sample prediction
-    const high = parseFloat(openPrice) + 2; // Just a sample prediction
-    setHighPrice(high.toFixed(2));
+    // Prepare the data to send in the POST request
+    const requestData = {
+      openPrice: parseFloat(openPrice),
+      highPrice: parseFloat(highPrice),
+      lowPrice: parseFloat(lowPrice),
+      closePrice: parseFloat(closePrice),
+    };
 
-    const low = parseFloat(openPrice) - 2; // Just a sample prediction
-    setLowPrice(low.toFixed(2));
-
-    const close = parseFloat(openPrice) * 1.2; // Just a sample prediction
-    setClosePrice(close.toFixed(2));
-    setPredictedPrice(prediction.toFixed(2));
+    // Make a POST request to your server using Axios
+    axios
+      .post("/api/predict", requestData)
+      .then((response) => {
+        // Set the predicted price based on the server's response
+        setPredictedPrice(response.data.predictedPrice.toFixed(2));
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
+
   useEffect(() => {
     // Simulating fetching stock prices
     const dummyStockPrices = [
@@ -61,14 +91,6 @@ const StockPricesPage = () => {
   return (
     <Container fluid>
       <Row>
-        {/* <Col md={2} className="bg-dark-blue text-white p-3">
-          <h3>Stocks</h3>
-          <Nav defaultActiveKey="/home" className="flex-column">
-          <Nav.Link href="/home">AAPL</Nav.Link>
-          <Nav.Link href="/home">GOOGL</Nav.Link>
-          <Nav.Link href="/home">MSFT</Nav.Link>
-        </Nav>
-        </Col> */}
         <Col md={2} className="bg-dark-blue text-white p-3">
           <h3 className="text-center mb-4">Stocks</h3>
           <Dropdown className="mb-3">
@@ -80,14 +102,14 @@ const StockPricesPage = () => {
                 <Dropdown.Item
                   key={stock.value}
                   active={selectedStock.value === stock.value}
-                  onClick={() => handleStockChange(stock)}
+                  onClick={() => setSelectedStock(stock)}
                 >
                   {stock.label}
                 </Dropdown.Item>
               ))}
             </Dropdown.Menu>
           </Dropdown>
-          <Form.Group className="mb-3">
+          <Form.Group className="mb-2">
             <Form.Label>Open Price</Form.Label>
             <Form.Control
               type="text"
@@ -96,28 +118,56 @@ const StockPricesPage = () => {
               onChange={handleOpenPriceChange}
             />
           </Form.Group>
-          <Button variant="light" onClick={handlePredict} className="w-100">
+          <Form.Group className="mb-2">
+            <Form.Label>High Price</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter high day price"
+              value={highPrice}
+              onChange={handleHighPriceChange}
+            />
+          </Form.Group>
+          <Form.Group className="mb-2">
+            <Form.Label>Low Price</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter low day price"
+              value={lowPrice}
+              onChange={handleLowPriceChange}
+            />
+          </Form.Group>
+          <Form.Group className="mb-2">
+            <Form.Label>Close Price</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter close day price"
+              value={closePrice}
+              onChange={handleClosePriceChange}
+            />
+          </Form.Group>
+          <Button
+            variant="light"
+            onClick={handlePredict}
+            className="w-100"
+            disabled={isPredictButtonDisabled}
+          >
             Predict
           </Button>
           {predictedPrice && (
-            <Form.Group className="mt-4">
-              <Form.Label>High</Form.Label>
-              <Form.Control type="text" readOnly value={highPrice} />
-              <Form.Label>Low</Form.Label>
-              <Form.Control type="text" readOnly value={lowPrice} />
-              <Form.Label>Close Price</Form.Label>
-              <Form.Control type="text" readOnly value={closePrice} />
+            <Form.Group className="mt-3">
+              <Form.Label>Predicted Next Day Price</Form.Label>
+              <Form.Control type="text" readOnly value={predictedPrice} />
             </Form.Group>
           )}
           <Button
             variant="light"
             onClick={handleNavigate}
-            className="w-100 mt-5"
+            className="w-100 mt-3"
           >
             Back
           </Button>
         </Col>
-        <Col md={9}>
+        <Col md={10}>
           <div className="p-3">
             <h1 className="text-center">Stock Prices</h1>
             {stockPrices.length > 0 ? (
