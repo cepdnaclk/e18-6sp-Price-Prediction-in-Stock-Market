@@ -1,5 +1,6 @@
 import pickle
 import pandas as pd
+from tensorflow.keras.models import load_model
 
 # Prediction class
 class Predict:
@@ -29,16 +30,18 @@ class Predict:
       # Load the model 
       try:
           # get the model name
-          model_name =  f"backend\model\{self._name}.pkl"
+          model_name =  f"./backend/model/{self._name}.h5"
 
           # Open the model
-          model = pickle.load(open(model_name, 'rb'))
+          # model = pickle.load(open(model_name, 'rb'))
+          model = load_model(model_name)
 
           # Prediting
           x = pd.DataFrame([(self._open, self._high, self._low, self._close)], 
                           columns= ['open', 'high', 'low', 'close'])
           prediction = model.predict(x)
-          return prediction
+
+          return prediction[0][0]
 
       except Exception as e:
           print(f"An error occurred: {str(e)}")
