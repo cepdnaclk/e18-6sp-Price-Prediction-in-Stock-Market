@@ -21,6 +21,7 @@ const StockPricesPage = () => {
   const [highPrice, setHighPrice] = useState("");
   const [lowPrice, setLowPrice] = useState("");
   const [closePrice, setClosePrice] = useState("");
+  const [name, setName] = useState(selectedStock.value); // Initialize the "Name" field with the selected stock label
   const [isPredictButtonDisabled, setIsPredictButtonDisabled] = useState(true);
 
   const handleOpenPriceChange = (e) => {
@@ -44,7 +45,7 @@ const StockPricesPage = () => {
   };
 
   const checkInputValues = () => {
-    // Enable the "Predict" button only if all four input fields have values
+    // Enable the "Predict" button only if all input fields have values
     if (openPrice && highPrice && lowPrice && closePrice) {
       setIsPredictButtonDisabled(false);
     } else {
@@ -59,12 +60,14 @@ const StockPricesPage = () => {
       highPrice: parseFloat(highPrice),
       lowPrice: parseFloat(lowPrice),
       closePrice: parseFloat(closePrice),
+      name,
     };
 
     // Make a POST request to your server using Axios
     axios
-      .post("/api/predict", requestData)
+      .post("http://127.0.0.1:5000/api/predict", requestData)
       .then((response) => {
+        console.log(requestData);
         // Set the predicted price based on the server's response
         setPredictedPrice(response.data.predictedPrice.toFixed(2));
       })
@@ -102,7 +105,10 @@ const StockPricesPage = () => {
                 <Dropdown.Item
                   key={stock.value}
                   active={selectedStock.value === stock.value}
-                  onClick={() => setSelectedStock(stock)}
+                  onClick={() => {
+                    setSelectedStock(stock);
+                    setName(stock.label); // Automatically set the "Name" field
+                  }}
                 >
                   {stock.label}
                 </Dropdown.Item>
@@ -143,6 +149,14 @@ const StockPricesPage = () => {
               placeholder="Enter close day price"
               value={closePrice}
               onChange={handleClosePriceChange}
+            />
+          </Form.Group>
+          <Form.Group className="mb-2" style={{ display: "none" }}>
+            <Form.Label>Name</Form.Label>
+            <Form.Control
+              type="text"
+              value={name}
+              readOnly
             />
           </Form.Group>
           <Button
