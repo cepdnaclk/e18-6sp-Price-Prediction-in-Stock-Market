@@ -69,7 +69,7 @@ const StockPricesPage = () => {
       .then((response) => {
         console.log(requestData);
         // Set the predicted price based on the server's response
-        setnextDayOpen(response.data.NextDayOpen.toFixed(2));
+        setnextDayOpen(response.data.NextDayOpen);
       })
       .catch((error) => {
         console.error("Error:", error);
