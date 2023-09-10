@@ -29,7 +29,7 @@ class Predict:
       # Load the model 
       try:
           # get the model name
-          model_name =  f"backend\model\{self._name}.pkl"
+          model_name =  f"..\model\{self._name}.pkl"
 
           # Open the model
           model = pickle.load(open(model_name, 'rb'))
