@@ -17,7 +17,7 @@ const StockPricesPage = () => {
   const [selectedStock, setSelectedStock] = useState(stocks[0]);
   const [stockPrices, setStockPrices] = useState([]);
   const [openPrice, setOpenPrice] = useState("");
-  const [predictedPrice, setPredictedPrice] = useState("");
+  const [nextDayOpen, setnextDayOpen] = useState("");
   const [highPrice, setHighPrice] = useState("");
   const [lowPrice, setLowPrice] = useState("");
   const [closePrice, setClosePrice] = useState("");
@@ -56,20 +56,20 @@ const StockPricesPage = () => {
   const handlePredict = () => {
     // Prepare the data to send in the POST request
     const requestData = {
-      openPrice: parseFloat(openPrice),
-      highPrice: parseFloat(highPrice),
-      lowPrice: parseFloat(lowPrice),
-      closePrice: parseFloat(closePrice),
+      open: parseFloat(openPrice),
+      high: parseFloat(highPrice),
+      low: parseFloat(lowPrice),
+      close: parseFloat(closePrice),
       name,
     };
 
     // Make a POST request to your server using Axios
     axios
-      .post("http://127.0.0.1:5000/api/predict", requestData)
+      .post("http://127.0.0.1:5000/predict", requestData)
       .then((response) => {
         console.log(requestData);
         // Set the predicted price based on the server's response
-        setPredictedPrice(response.data.predictedPrice.toFixed(2));
+        setnextDayOpen(response.data.NextDayOpen.toFixed(2));
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -167,10 +167,10 @@ const StockPricesPage = () => {
           >
             Predict
           </Button>
-          {predictedPrice && (
+          {nextDayOpen && (
             <Form.Group className="mt-3">
               <Form.Label>Predicted Next Day Price</Form.Label>
-              <Form.Control type="text" readOnly value={predictedPrice} />
+              <Form.Control type="text" readOnly value={nextDayOpen} />
             </Form.Group>
           )}
           <Button
