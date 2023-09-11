@@ -14,6 +14,7 @@ const LineChart = () => {
     { value: "AAPL", label: "Apple" },
     { value: "GOOGL", label: "Google" },
     { value: "MSFT", label: "Microsoft" },
+    { value: "NVDA", label: "Nvidia" },
     // Add more stocks as needed
   ];
 
