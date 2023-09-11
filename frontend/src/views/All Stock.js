@@ -12,6 +12,11 @@ const StockPricesPage = () => {
     { value: "GOOGL", label: "Google" },
     { value: "MSFT", label: "Microsoft" },
     { value: "NVDA", label: "Nvidia" },
+    { value: "CSCO", label: "Cisco Systems" },
+    { value: "FDX", label: "FedEx" },
+    { value: "LIN", label: "Linde PLC" },
+    { value: "RTX", label: "Rtx Corp" },
+    { value: "TSLA", label: "Tesla Inc" },
     // Add more stocks as needed
   ];
 
@@ -77,12 +82,32 @@ const StockPricesPage = () => {
       });
   };
 
+  function high(){
+    return (Math.random() * (320 - 300) + 320).toFixed(2);
+  }
+
+  function low(){
+    return (Math.random() * (295 - 280) + 280).toFixed(2);
+  }
+
+  function close(){
+    return (Math.random() * (310 - 290) + 290).toFixed(2);
+  }
+
   useEffect(() => {
     // Simulating fetching stock prices
     const dummyStockPrices = [
-      { symbol: "AAPL", high: 150.23, low: 148.45, close: 149.75 },
-      { symbol: "GOOGLE", high: 2765.34, low: 2748.12, close: 2758.56 },
-      { symbol: "MSFT", high: 305.67, low: 302.89, close: 304.91 },
+      // const y = Math.floor(Math.random() * (400 - 320 + 1)) + 320;
+      { symbol: "AAPL", high: high(), low: low(), close: close() },
+      { symbol: "GOOGL", high: high(), low: low(), close: close() },
+      { symbol: "MSFT", high: high(), low: low(), close: close() },
+      { symbol: "CSCO", high: high(), low: low(), close: close() },
+      { symbol: "FDX", high: high(), low: low(), close: close() },
+      { symbol: "GD", high: high(), low: low(), close: close() },
+      { symbol: "LIN", high: high(), low: low(), close: close() },
+      { symbol: "NVDA", high: high(), low: low(), close: close() },
+      { symbol: "RTX", high: high(), low: low(), close: close() },
+      { symbol: "TSLA", high: high(), low: low(), close: close() },
     ];
     setStockPrices(dummyStockPrices);
   }, []);

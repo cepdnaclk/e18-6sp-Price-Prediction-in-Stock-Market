@@ -15,6 +15,12 @@ const LineChart = () => {
     { value: "GOOGL", label: "Google" },
     { value: "MSFT", label: "Microsoft" },
     { value: "NVDA", label: "Nvidia" },
+    { value: "CSCO", label: "Cisco Systems" },
+    { value: "FDX", label: "FedEx" },
+    { value: "LIN", label: "Linde PLC" },
+    { value: "RTX", label: "Rtx Corp" },
+    { value: "TSLA", label: "Tesla Inc" },
+    { value: "GD", label: "General Dynamics" },
     // Add more stocks as needed
   ];
 
@@ -83,47 +89,85 @@ const LineChart = () => {
     // This is just a sample implementation
     switch (stock.value) {
       case "AAPL":
-        return [
-          { x: 1, y: 64 },
-          { x: 2, y: 61 },
-          { x: 3, y: 64 },
-          { x: 4, y: 62 },
-          { x: 5, y: 64 },
-          { x: 6, y: 60 },
-          { x: 7, y: 58 },
-          { x: 8, y: 59 },
-          { x: 9, y: 53 },
-          { x: 10, y: 54 },
-          // Add more data points for Apple
-        ];
+        const aapldata = [];
+        for (let x = 1; x <= 10; x++) {
+            // Generate random y values within a certain range
+            const y = Math.floor(Math.random() * (400 - 320 + 1)) + 320;
+            aapldata.push({ x, y });
+        }
+        return aapldata;
       case "GOOGL":
-        return [
-          { x: 1, y: 75 },
-          { x: 2, y: 70 },
-          { x: 3, y: 72 },
-          { x: 4, y: 68 },
-          { x: 5, y: 73 },
-          { x: 6, y: 70 },
-          { x: 7, y: 72 },
-          { x: 8, y: 75 },
-          { x: 9, y: 78 },
-          { x: 10, y: 80 },
-          // Add more data points for Google
-        ];
+        const googldata = [];
+        for (let x = 1; x <= 10; x++) {
+            // Generate random y values within a certain range
+            const y = Math.floor(Math.random() * (400 - 320 + 1)) + 320;
+            googldata.push({ x, y });
+        }
+        return googldata;
       case "MSFT":
-        return [
-          { x: 1, y: 80 },
-          { x: 2, y: 82 },
-          { x: 3, y: 78 },
-          { x: 4, y: 85 },
-          { x: 5, y: 83 },
-          { x: 6, y: 86 },
-          { x: 7, y: 88 },
-          { x: 8, y: 90 },
-          { x: 9, y: 87 },
-          { x: 10, y: 84 },
-          // Add more data points for Microsoft
-        ];
+        const msftdata = [];
+        for (let x = 1; x <= 10; x++) {
+            // Generate random y values within a certain range
+            const y = Math.floor(Math.random() * (400 - 320 + 1)) + 320;
+            msftdata.push({ x, y });
+        }
+        return msftdata;
+      case "TSLA":
+        const tsladata = [];
+        for (let x = 1; x <= 10; x++) {
+            // Generate random y values within a certain range
+            const y = Math.floor(Math.random() * (400 - 320 + 1)) + 320;
+            tsladata.push({ x, y });
+        }
+        return tsladata;
+      case "CSCO":
+        const cscodata = [];
+        for (let x = 1; x <= 10; x++) {
+            // Generate random y values within a certain range
+            const y = Math.floor(Math.random() * (400 - 320 + 1)) + 320;
+            cscodata.push({ x, y });
+        }
+        return cscodata;
+      case "FDX":
+        const fdxdata = [];
+        for (let x = 1; x <= 10; x++) {
+            // Generate random y values within a certain range
+            const y = Math.floor(Math.random() * (400 - 320 + 1)) + 320;
+            fdxdata.push({ x, y });
+        }
+        return fdxdata;
+      case "GD":
+        const gddata = [];
+        for (let x = 1; x <= 10; x++) {
+            // Generate random y values within a certain range
+            const y = Math.floor(Math.random() * (400 - 320 + 1)) + 320;
+            gddata.push({ x, y });
+        }
+        return gddata;
+      case "LIN":
+        const lindata = [];
+        for (let x = 1; x <= 10; x++) {
+            // Generate random y values within a certain range
+            const y = Math.floor(Math.random() * (400 - 320 + 1)) + 320;
+            lindata.push({ x, y });
+        }
+        return lindata;
+      case "NVDA":
+        const nvdadata = [];
+        for (let x = 1; x <= 10; x++) {
+            // Generate random y values within a certain range
+            const y = Math.floor(Math.random() * (400 - 320 + 1)) + 320;
+            nvdadata.push({ x, y });
+        }
+        return nvdadata;
+      case "RTX":
+        const rtxdata = [];
+        for (let x = 1; x <= 10; x++) {
+            // Generate random y values within a certain range
+            const y = Math.floor(Math.random() * (400 - 320 + 1)) + 320;
+            rtxdata.push({ x, y });
+        }
+        return rtxdata;
       default:
         return [];
     }
