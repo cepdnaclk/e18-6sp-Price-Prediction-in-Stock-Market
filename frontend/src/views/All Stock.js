@@ -4,6 +4,7 @@ import { Form, Button, Dropdown } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+
 const StockPricesPage = () => {
   const navigate = useNavigate();
 
@@ -118,126 +119,132 @@ const StockPricesPage = () => {
   };
 
   return (
-    <Container fluid>
-      <Row>
-        <Col md={2} className="bg-dark-blue text-white p-3">
-          <h3 className="text-center mb-4">Stocks</h3>
-          <Dropdown className="mb-3">
-            <Dropdown.Toggle variant="light" id="dropdown-basic">
-              {selectedStock.label}
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              {stocks.map((stock) => (
-                <Dropdown.Item
-                  key={stock.value}
-                  active={selectedStock.value === stock.value}
-                  onClick={() => {
-                    setSelectedStock(stock);
-                    setName(stock.label); // Automatically set the "Name" field
-                  }}
-                >
-                  {stock.label}
-                </Dropdown.Item>
-              ))}
-            </Dropdown.Menu>
-          </Dropdown>
-          <Form.Group className="mb-2">
-            <Form.Label>Open Price</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter open day price"
-              value={openPrice}
-              onChange={handleOpenPriceChange}
-            />
-          </Form.Group>
-          <Form.Group className="mb-2">
-            <Form.Label>High Price</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter high day price"
-              value={highPrice}
-              onChange={handleHighPriceChange}
-            />
-          </Form.Group>
-          <Form.Group className="mb-2">
-            <Form.Label>Low Price</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter low day price"
-              value={lowPrice}
-              onChange={handleLowPriceChange}
-            />
-          </Form.Group>
-          <Form.Group className="mb-2">
-            <Form.Label>Close Price</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter close day price"
-              value={closePrice}
-              onChange={handleClosePriceChange}
-            />
-          </Form.Group>
-          <Form.Group className="mb-2" style={{ display: "none" }}>
-            <Form.Label>Name</Form.Label>
-            <Form.Control
-              type="text"
-              value={name}
-              readOnly
-            />
-          </Form.Group>
-          <Button
-            variant="light"
-            onClick={handlePredict}
-            className="w-100"
-            disabled={isPredictButtonDisabled}
-          >
-            Predict
-          </Button>
-          {nextDayOpen && (
-            <Form.Group className="mt-3">
-              <Form.Label>Predicted Next Day Price</Form.Label>
-              <Form.Control type="text" readOnly value={nextDayOpen} />
+    <>
+    
+    <div>
+      <Container fluid>
+        <Row>
+          <Col md={2} className="bar">
+            <h3 className="text-center mb-4">Stocks</h3>
+            <Dropdown className="mb-3">
+              <Dropdown.Toggle variant="light" id="dropdown-basic">
+                {selectedStock.label}
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                {stocks.map((stock) => (
+                  <Dropdown.Item
+                    key={stock.value}
+                    active={selectedStock.value === stock.value}
+                    onClick={() => {
+                      setSelectedStock(stock);
+                      setName(stock.label); // Automatically set the "Name" field
+                    }}
+                  >
+                    {stock.label}
+                  </Dropdown.Item>
+                ))}
+              </Dropdown.Menu>
+            </Dropdown>
+            <Form.Group className="mb-2">
+              <Form.Label>Open Price</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter open day price"
+                value={openPrice}
+                onChange={handleOpenPriceChange}
+              />
             </Form.Group>
-          )}
-          <Button
-            variant="light"
-            onClick={handleNavigate}
-            className="w-100 mt-3"
-          >
-            Back
-          </Button>
-        </Col>
-        <Col md={10}>
-          <div className="p-3">
-            <h1 className="text-center">Stock Prices</h1>
-            {stockPrices.length > 0 ? (
-              <Table striped bordered hover>
-                <thead>
-                  <tr>
-                    <th>Stock</th>
-                    <th>High</th>
-                    <th>Low</th>
-                    <th>Close</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {stockPrices.map((stock) => (
-                    <tr key={stock.symbol}>
-                      <td>{stock.symbol}</td>
-                      <td>{stock.high}</td>
-                      <td>{stock.low}</td>
-                      <td>{stock.close}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </Table>
-            ) : (
-              <p>Loading stock prices...</p>
+            <Form.Group className="mb-2">
+              <Form.Label>High Price</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter high day price"
+                value={highPrice}
+                onChange={handleHighPriceChange}
+              />
+            </Form.Group>
+            <Form.Group className="mb-2">
+              <Form.Label>Low Price</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter low day price"
+                value={lowPrice}
+                onChange={handleLowPriceChange}
+              />
+            </Form.Group>
+            <Form.Group className="mb-2">
+              <Form.Label>Close Price</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter close day price"
+                value={closePrice}
+                onChange={handleClosePriceChange}
+              />
+            </Form.Group>
+            <Form.Group className="mb-2" style={{ display: "none" }}>
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                type="text"
+                value={name}
+                readOnly
+              />
+            </Form.Group>
+            <Button
+              variant="light"
+              onClick={handlePredict}
+              className="w-100"
+              disabled={isPredictButtonDisabled}
+            >
+              Predict
+            </Button>
+            {nextDayOpen && (
+              <Form.Group className="mt-3">
+                <Form.Label>Predicted Next Day Price</Form.Label>
+                <Form.Control type="text" readOnly value={nextDayOpen} />
+              </Form.Group>
             )}
-          </div>
-        </Col>
-      </Row>
-    </Container>
+            <Button
+              variant="light"
+              onClick={handleNavigate}
+              className="w-100 mt-3"
+            >
+              Back
+            </Button>
+          </Col>
+          <Col md={10}>
+            <div className="p-3">
+              <h1 className="text-center">Stock Prices</h1>
+              {stockPrices.length > 0 ? (
+                <Table striped bordered hover>
+                  <thead>
+                    <tr>
+                      <th>Stock</th>
+                      <th>High</th>
+                      <th>Low</th>
+                      <th>Close</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {stockPrices.map((stock) => (
+                      <tr key={stock.symbol}>
+                        <td>{stock.symbol}</td>
+                        <td>{stock.high}</td>
+                        <td>{stock.low}</td>
+                        <td>{stock.close}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Table>
+              ) : (
+                <p>Loading stock prices...</p>
+              )}
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    </div>
+    
+    </>
   );
 };
 
