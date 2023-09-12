@@ -89,85 +89,136 @@ const LineChart = () => {
     // This is just a sample implementation
     switch (stock.value) {
       case "AAPL":
-        const aapldata = [];
-        for (let x = 1; x <= 10; x++) {
-            // Generate random y values within a certain range
-            const y = Math.floor(Math.random() * (400 - 320 + 1)) + 320;
-            aapldata.push({ x, y });
-        }
-        return aapldata;
+        return [
+          { x: 1, y: 230 },
+          { x: 2, y: 240 },
+          { x: 3, y: 220 },
+          { x: 4, y: 235 },
+          { x: 5, y: 215 },
+          { x: 6, y: 225 },
+          { x: 7, y: 245 },
+          { x: 8, y: 210 },
+          { x: 9, y: 200 },
+          { x: 10, y: 235 },
+        ];
       case "GOOGL":
-        const googldata = [];
-        for (let x = 1; x <= 10; x++) {
-            // Generate random y values within a certain range
-            const y = Math.floor(Math.random() * (400 - 320 + 1)) + 320;
-            googldata.push({ x, y });
-        }
-        return googldata;
+        return [
+          { x: 1, y: 210 },
+          { x: 2, y: 225 },
+          { x: 3, y: 215 },
+          { x: 4, y: 220 },
+          { x: 5, y: 230 },
+          { x: 6, y: 205 },
+          { x: 7, y: 190 },
+          { x: 8, y: 200 },
+          { x: 9, y: 195 },
+          { x: 10, y: 215 },
+        ];
       case "MSFT":
-        const msftdata = [];
-        for (let x = 1; x <= 10; x++) {
-            // Generate random y values within a certain range
-            const y = Math.floor(Math.random() * (400 - 320 + 1)) + 320;
-            msftdata.push({ x, y });
-        }
-        return msftdata;
+        return [
+          { x: 1, y: 180 },
+          { x: 2, y: 200 },
+          { x: 3, y: 210 },
+          { x: 4, y: 195 },
+          { x: 5, y: 185 },
+          { x: 6, y: 175 },
+          { x: 7, y: 190 },
+          { x: 8, y: 215 },
+          { x: 9, y: 170 },
+          { x: 10, y: 195 },
+        ];
       case "TSLA":
-        const tsladata = [];
-        for (let x = 1; x <= 10; x++) {
-            // Generate random y values within a certain range
-            const y = Math.floor(Math.random() * (400 - 320 + 1)) + 320;
-            tsladata.push({ x, y });
-        }
-        return tsladata;
+        return [
+          { x: 1, y: 215 },
+          { x: 2, y: 250 },
+          { x: 3, y: 235 },
+          { x: 4, y: 260 },
+          { x: 5, y: 230 },
+          { x: 6, y: 245 },
+          { x: 7, y: 255 },
+          { x: 8, y: 225 },
+          { x: 9, y: 220 },
+          { x: 10, y: 210 },
+        ];
       case "CSCO":
-        const cscodata = [];
-        for (let x = 1; x <= 10; x++) {
-            // Generate random y values within a certain range
-            const y = Math.floor(Math.random() * (400 - 320 + 1)) + 320;
-            cscodata.push({ x, y });
-        }
-        return cscodata;
+        return [
+          { x: 1, y: 220 },
+          { x: 2, y: 235 },
+          { x: 3, y: 215 },
+          { x: 4, y: 245 },
+          { x: 5, y: 230 },
+          { x: 6, y: 250 },
+          { x: 7, y: 210 },
+          { x: 8, y: 255 },
+          { x: 9, y: 225 },
+          { x: 10, y: 260 },
+        ];
       case "FDX":
-        const fdxdata = [];
-        for (let x = 1; x <= 10; x++) {
-            // Generate random y values within a certain range
-            const y = Math.floor(Math.random() * (400 - 320 + 1)) + 320;
-            fdxdata.push({ x, y });
-        }
-        return fdxdata;
+        return [
+          { x: 1, y: 250 },
+          { x: 2, y: 260 },
+          { x: 3, y: 245 },
+          { x: 4, y: 255 },
+          { x: 5, y: 240 },
+          { x: 6, y: 265 },
+          { x: 7, y: 230 },
+          { x: 8, y: 270 },
+          { x: 9, y: 235 },
+          { x: 10, y: 280 },
+        ];
       case "GD":
-        const gddata = [];
-        for (let x = 1; x <= 10; x++) {
-            // Generate random y values within a certain range
-            const y = Math.floor(Math.random() * (400 - 320 + 1)) + 320;
-            gddata.push({ x, y });
-        }
-        return gddata;
+        return [
+          { x: 1, y: 180 },
+          { x: 2, y: 220 },
+          { x: 3, y: 190 },
+          { x: 4, y: 210 },
+          { x: 5, y: 200 },
+          { x: 6, y: 215 },
+          { x: 7, y: 185 },
+          { x: 8, y: 225 },
+          { x: 9, y: 205 },
+          { x: 10, y: 195 },
+        ];
       case "LIN":
-        const lindata = [];
-        for (let x = 1; x <= 10; x++) {
-            // Generate random y values within a certain range
-            const y = Math.floor(Math.random() * (400 - 320 + 1)) + 320;
-            lindata.push({ x, y });
-        }
-        return lindata;
+        return [
+          { x: 1, y: 180 },
+          { x: 2, y: 195 },
+          { x: 3, y: 230 },
+          { x: 4, y: 215 },
+          { x: 5, y: 230 },
+          { x: 6, y: 245 },
+          { x: 7, y: 250 },
+          { x: 8, y: 230 },
+          { x: 9, y: 280 },
+          { x: 10, y: 290 },
+        ];
       case "NVDA":
-        const nvdadata = [];
-        for (let x = 1; x <= 10; x++) {
-            // Generate random y values within a certain range
-            const y = Math.floor(Math.random() * (400 - 320 + 1)) + 320;
-            nvdadata.push({ x, y });
-        }
-        return nvdadata;
+        return [
+          { x: 1, y: 240 },
+          { x: 2, y: 235 },
+          { x: 3, y: 358 },
+          { x: 4, y: 252 },
+          { x: 5, y: 345 },
+          { x: 6, y: 360 },
+          { x: 7, y: 265 },
+          { x: 8, y: 220 },
+          { x: 9, y: 272 },
+          { x: 10, y: 275 },
+        ];
       case "RTX":
-        const rtxdata = [];
-        for (let x = 1; x <= 10; x++) {
-            // Generate random y values within a certain range
-            const y = Math.floor(Math.random() * (400 - 320 + 1)) + 320;
-            rtxdata.push({ x, y });
-        }
-        return rtxdata;
+        return [
+          { x: 1, y: 340 },
+          { x: 2, y: 335 },
+          { x: 3, y: 348 },
+          { x: 4, y: 352 },
+          { x: 5, y: 345 },
+          { x: 6, y: 360 },
+          { x: 7, y: 365 },
+          { x: 8, y: 320 },
+          { x: 9, y: 372 },
+          { x: 10, y: 375 },
+        ];
+        
       default:
         return [];
     }
@@ -210,11 +261,11 @@ const LineChart = () => {
   };
 
   return (
-    <Container fluid>
+    <Container fluid >
       <Row>
-        <Col md={2} className="bg-dark-blue text-white p-3">
+        <Col md={2} className="bar">
           <h3 className="text-center mb-4">Stocks</h3>
-          <Dropdown className="mb-2">
+          <Dropdown className="mb-3">
             <Dropdown.Toggle variant="light" id="dropdown-basic">
               {selectedStock.label}
             </Dropdown.Toggle>
@@ -296,7 +347,7 @@ const LineChart = () => {
             View All Stocks
           </Button>
         </Col>
-        <Col md={10}>
+        <Col md={10} mx={15}>
           <div className="p-3">
             <h1 className="text-center">Stock Market Price Prediction</h1>
             <CanvasJSChart options={options} />

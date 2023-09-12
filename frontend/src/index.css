@@ -1,5 +1,4 @@
-body {
-}
+
 
 html {
   min-height: 100%;
@@ -14,6 +13,14 @@ body {
   padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+.bar {
+  background-color: #37517e;
+  color: white;
+  /* padding: 3px; */
+  /* height: 300px; */
+  /* max-height: 550px; */
+  height: calc(100vh - 64px);
 }
 #header {
   background-color: #000;
